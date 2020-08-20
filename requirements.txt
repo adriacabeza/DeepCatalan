@@ -1,0 +1,5 @@
+torch
+fastai
+tqdm
+requests
+BeautifulSoup4
