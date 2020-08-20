@@ -1,82 +1,54 @@
 #!/usr/bin/env bash
-#
-# Copyright (c) 2016-present, Facebook, Inc.
-# All rights reserved.
-#
-# This source code is licensed under the BSD-style license found in the
-# LICENSE file in the root directory of this source tree. An additional grant
-# of patent rights can be found in the PATENTS file in the same directory.
-#
-# Forked from FastText open source repository
+# Script to download a Wikipedia dump
 
-
-set -e
-
-normalize_text() {
-   LANG=C LC_CTYPE=C LC_ALL=C  sed -e "s/’/'/g" -e "s/′/'/g" -e "s/''/ /g" -e "s/'/ ' /g" -e "s/“/\"/g" -e "s/”/\"/g" \
-        -e 's/"/ " /g' -e 's/\./ \. /g' -e 's/<br \/>/ /g' -e 's/, / , /g' -e 's/(/ ( /g' -e 's/)/ ) /g' -e 's/\!/ \! /g' \
-        -e 's/\?/ \? /g' -e 's/\;/ /g' -e 's/\:/ /g' -e 's/-/ - /g' -e 's/=/ /g' -e 's/=/ /g' -e 's/*/ /g' -e 's/|/ /g' \
-        -e 's/«/ /g' | tr 0-9 " "
-}
-
-export LANGUAGE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-NOW=$(date +"%Y%m%d")
-
-ROOT="./wikimedia"
+# Script is partially based on https://github.com/facebookresearch/fastText/blob/master/get-wikimedia.sh
+ROOT="data"
+DUMP_DIR="${ROOT}/wiki_dumps"
+EXTR_DIR="${ROOT}/wiki_extr"
+WIKI_DIR="${ROOT}/wiki"
+EXTR="wikiextractor"
 mkdir -p "${ROOT}"
+mkdir -p "${DUMP_DIR}"
+mkdir -p "${EXTR_DIR}"
+mkdir -p "${WIKI_DIR}"
+
 echo "Saving data in ""$ROOT"
 read -r -p "Choose a language (e.g. en, bh, fr, etc.): " choice
 LANG="$choice"
 echo "Chosen language: ""$LANG"
-read -r -p "Continue to download (WARNING: This might be big and can take a long time!)(y/n)? " choice
-case "$choice" in
-  y|Y ) echo "Starting download...";;
-  n|N ) echo "Exiting";exit 1;;
-  * ) echo "Invalid answer";exit 1;;
-esac
-wget -c "https://dumps.wikimedia.org/""$LANG""wiki/latest/""${LANG}""wiki-latest-pages-articles.xml.bz2" -P "${ROOT}"
-echo "Processing ""$ROOT"/"$LANG""wiki-latest-pages-articles.xml.bz2"
-bzip2 -c -d "$ROOT"/"$LANG""wiki-latest-pages-articles.xml.bz2" | awk '{print tolower($0);}' | perl -e '
-# Program to filter Wikipedia XML dumps to "clean" text consisting only of lowercase
-# letters (a-z, converted from A-Z), and spaces (never consecutive)...
-# All other characters are converted to spaces.  Only text which normally appears.
-# in the web browser is displayed.  Tables are removed.  Image captions are.
-# preserved.  Links are converted to normal text.  Digits are spelled out.
-# *** Modified to not spell digits or throw away non-ASCII characters ***
-# Written by Matt Mahoney, June 10, 2006.  This program is released to the public domain.
-$/=">";                     # input record separator
-while (<>) {
-  if (/<text /) {$text=1;}  # remove all but between <text> ... </text>
-  if (/#redirect/i) {$text=0;}  # remove #REDIRECT
-  if ($text) {
-    # Remove any text not normally visible
-    if (/<\/text>/) {$text=0;}
-    s/<.*>//;               # remove xml tags
-    s/&amp;/&/g;            # decode URL encoded chars
-    s/&lt;/</g;
-    s/&gt;/>/g;
-    s/<ref[^<]*<\/ref>//g;  # remove references <ref...> ... </ref>
-    s/<[^>]*>//g;           # remove xhtml tags
-    s/\[http:[^] ]*/[/g;    # remove normal url, preserve visible text
-    s/\|thumb//ig;          # remove images links, preserve caption
-    s/\|left//ig;
-    s/\|right//ig;
-    s/\|\d+px//ig;
-    s/\[\[image:[^\[\]]*\|//ig;
-    s/\[\[category:([^|\]]*)[^]]*\]\]/[[$1]]/ig;  # show categories without markup
-    s/\[\[[a-z\-]*:[^\]]*\]\]//g;  # remove links to other languages
-    s/\[\[[^\|\]]*\|/[[/g;  # remove wiki url, preserve visible text
-    s/{\{[^}]*}}//g;         # remove {{icons}} and {tables}
-    s/{[^}]*}//g;
-    s/\[//g;                # remove [ and ]
-    s/\]//g;
-    s/&[^;]*;/ /g;          # remove URL encoded chars
-    $_=" $_ ";
-    chop;
-    print $_;
-  }
-}
-' | normalize_text | awk '{if (NF>1) print;}' | tr -s " " | shuf > "${ROOT}"/wiki."${LANG}".txt
+DUMP_FILE="${LANG}wiki-latest-pages-articles.xml.bz2"
+DUMP_PATH="${DUMP_DIR}/${DUMP_FILE}"
+
+if [ ! -f "${DUMP_PATH}" ]; then
+  read -r -p "Continue to download (WARNING: This might be big and can take a long time!) (y/n)? " choice
+  case "$choice" in
+    y|Y ) echo "Starting download...";;
+    n|N ) echo "Exiting";exit 1;;
+    * ) echo "Invalid answer";exit 1;;
+  esac
+  wget -c "https://dumps.wikimedia.org/""${LANG}""wiki/latest/""${DUMP_FILE}""" -P "${DUMP_DIR}"
+else
+  echo "${DUMP_PATH} already exists. Skipping download."
+fi
+
+Check if directory exists
+if [ ! -d "${EXTR}" ]; then
+ git clone https://github.com/attardi/wikiextractor.git
+ cd "${EXTR}"
+ git checkout 9cf2a2a883fc8e2146ff8df234d036e695df1be4
+ cd ..
+fi
+
+
+EXTR_PATH="${EXTR_DIR}/${LANG}"
+if [ ! -d "${EXTR_PATH}" ]; then
+  read -r -p "Continue to extract Wikipedia (WARNING: This might take a long time!) (y/n)? " choice
+  case "$choice" in
+    y|Y ) echo "Extracting ${DUMP_PATH} to ${EXTR_PATH}...";;
+    n|N ) echo "Exiting";exit 1;;
+    * ) echo "Invalid answer";exit 1;;
+  esac
+  python wikiextractor/WikiExtractor.py -s --json -q -o "${EXTR_PATH}" "${DUMP_PATH}"
+else
+  echo "${EXTR_PATH} already exists. Skipping extraction."
+fi

@@ -4,9 +4,9 @@
 
 Últimament hi està havent un boom en el camp del NLP, en especial en el camp en els transformadors (i.e. BERT, GPT-3). No obstant, es tendeix a enfocar l'interés únicament en l'anglès; les altres llengües queden apartadles dels nous models i tècniques. És per això que he decidit crear aquest model per al Català. La idea és que això serveixi de base per a crear noves aplicacions que utilitzin NLP en català.
 
-Aquest repositori conté la implementació de [ULMFit](https://arxiv.org/pdf/1801.06146.pdf) ideada per en Jeremy Howard i en Sebastian Ruder aplicada a tasques de processament de llenguatge natural en Català. També cal mencionar a la versió de ULMFit en castellà efectuada per en [X]() la qual ha servit d'inspiració en més d'un moment. 
+Aquest repositori conté la implementació de [ULMFit](https://arxiv.org/pdf/1801.06146.pdf) ideada per en Jeremy Howard i en Sebastian Ruder aplicada a tasques de processament de llenguatge natural en Cata. El model s'ha preentrenat amb un dump de Wikipedia de més de X articles i N paraules. El codi s'ha insipirat principalment en el codi oficial de Fastai (el qual està una mica antiquat i s'hauria de renovar) i DeepFrench(la versió de ULMFIT en francès). 
 
-Aquest approach aconsegueix resultats SOTA en classificació de tweets en Català. El pesos del backbone es poden trobar [aquí]() i el TASS dataset [aquí]().
+Per a provar els weights d'aquest multi-purpouse model en català he realitzat una prova aconseguint resultats SOTA en classificació de  notícies en Català. El pesos del backbone es poden trobar [aquí]() i el TASS dataset [aquí]().
 
 ## Ús
 
