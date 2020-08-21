@@ -19,7 +19,7 @@ pip -r requirements.lock
 ```
 
 - Entrenar ULMFit amb wikipedia: [CatalanULMFit.ipynb](CatalanULMFit.ipynb)
-- Entrenar un classificador fent servir els pesos preentrenats: [](). Per aquest pas hauràs de crear un dataset (no té perquè ser molt gran, s'han demostrar resultats molt bons amb poca data).
+- Entrenar un classificador fent servir els pesos preentrenats: [ClassificadorNoticies.ipynb](ClassificadorNoticies.ipynb). Per aquest pas hauràs de crear un dataset (no té perquè ser molt gran, s'han demostrar resultats molt bons amb poca data).
 
 ## Pesos preentrenats
 
