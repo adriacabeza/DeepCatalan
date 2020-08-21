@@ -1,6 +1,5 @@
 # CatalanULMFit
-
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)[![star this repo](https://githubbadges.com/star.svg?user=adriacabeza&repo=DeepCatalan&style=flat-square)](https://github.com/adriacabeza/DeepCatalan) [![fork this repo](https://githubbadges.com/fork.svg?user=adriacabeza&repo=DeepCatalan&style=flat-square)](https://github.com/adriacabeza/DeepCatalan/fork)[![forthebadge](https://forthebadge.com/images/badges/certified-Pompeu-Fabra.svg)](https://forthebadge.com)
+[![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)[![star this repo](https://githubbadges.com/star.svg?user=adriacabeza&repo=DeepCatalan&style=flat-square)](https://github.com/adriacabeza/DeepCatalan) [![fork this repo](https://githubbadges.com/fork.svg?user=adriacabeza&repo=DeepCatalan&style=flat-square)](https://github.com/adriacabeza/DeepCatalan/fork)
 
 >  Since this repository is built with the goal of making possible to use DL models in Catalan, I've decided to document everything in Catalan. If you have any question, do not hesitate in creating an issue or contacting me. 
 
@@ -47,16 +46,15 @@ L'entrenament de ULMFit es basa en tres pasos:
 
 - **Discriminative fine-tuning**: Aquest mètode es basa en tunejar cada layer del model amb un learning rate diferent. La relació de learning rates que es fa servir entre capes es va trobar empíricament:
 <div align="center">
-<img src="https://latex.codecogs.com/gif.latex?O_t=n^{l-1} = \frac{n^l}{2.6}"/>
+  <img src="https://latex.codecogs.com/gif.latex?O_t=n^{l-1}=\frac{n^l}{2.6}"/>
 </div>
 
 - **Slanted triangular learning rates**: Consisteix en incrementar inicialment el learning rate linealment i llavors disminuir-lo segons aquestes regles: 
 <div align="center">
-<img src="https://latex.codecogs.com/gif.latex?O_t=
-  punt = T*frac\\
-  n_t = n_{max}\cdot \frac{1+p\cdot(ratio-1)}{ratio}
-  "/>
-  </div>
+  <img src="https://latex.codecogs.com/gif.latex?O_t=punt=T*frac"/>
+    <br>
+  <img src="https://latex.codecogs.com/gif.latex?O_t=n_t=n_{max}\cdot\frac{1+p\cdot(ratio-1)}{ratio}"/>
+</div>
   
 
  S'utilitza perquè volem convergir de manera ràpida a una regió del espai adecuada (el període en el que el learning rate augmenta) i llavors refinar adequadament els paràmetres (peróde on el learning rate va disminuir).
@@ -75,7 +73,9 @@ Dues tècniques adicionals que cal esmentar en aquest últim pas són el *Gradua
 
   Normalment la informació rellevant en un text per a ser classificat està contingut en poques paraules. Com a input potser tenim documents que consisteixen en centenars de paraules de manera que l'estat amagat de les LSTM potser no conté tota la informació que necessitem. Per això en aquest model es concatena l'estat amagat de l'últim pas, *h_t* amb la representació max-pooled i mean-poolen dels estats amagats anteriors, *H*:
   <div align="center">
-  <img src="https://latex.codecogs.com/gif.latex?O_t=H = {h_1,...h_T}\\ h_c = [h_t, maxpool(H), meanpool(H)]"/>
+    <img src="https://latex.codecogs.com/gif.latex?O_t=H={h_1,...h_T}"/>
+    <br>
+    <img src="https://latex.codecogs.com/gif.latex?O_t=h_c=[h_t,maxpool(H),meanpool(H)]"/>
   </div>
   
   ## TODO
