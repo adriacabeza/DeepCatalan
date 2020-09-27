@@ -1,4 +1,4 @@
-# CatalanULMFit
+# DeepCatalan
 [![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)[![star this repo](https://githubbadges.com/star.svg?user=adriacabeza&repo=DeepCatalan&style=flat-square)](https://github.com/adriacabeza/DeepCatalan) [![fork this repo](https://githubbadges.com/fork.svg?user=adriacabeza&repo=DeepCatalan&style=flat-square)](https://github.com/adriacabeza/DeepCatalan/fork)
 
 >  Since this repository is built with the goal of making possible to use DL models in Catalan, I've decided to document everything in Catalan. If you have any question, do not hesitate in creating an issue or contacting me. 
@@ -18,8 +18,8 @@ Hi ha dos notebooks disponibles els quals ja descarreguen a l'inici les seves de
 
 ## Pesos preentrenats
 
-- [CatalanULMFit]() (218 MB): model amb una perplexitat de **21.54** i un vocabulari de **30.656** paraules.
-- [ClassificadorNotícies]() ( MB): model de prova que classifica notícies en 5 categories: esports, economia, cultura, tecnologia i salut. El model té una accuracy del **97%**.
+- [CatalanULMFit](https://mega.nz/folder/b2ZjwaqB#pMAEy-OFVbDvQu4Vk63mpQ) (218 MB): model amb una perplexitat de **21.54** i un vocabulari de **30.656** paraules.
+- [ClassificadorNotície](https://mega.nz/folder/b2ZjwaqB#pMAEy-OFVbDvQu4Vk63mpQ) (195 MB): model de prova que classifica notícies en 5 categories: esports, economia, cultura, tecnologia i salut. El model té una accuracy del **97%**.
 
 
 ## Exemple: Classificació de notícies
