@@ -1,11 +1,17 @@
-# DeepCatalan
+
+<h1 align="center"> DeepCatalan: Catalan version for ULMFit </h1>
+<div align="center">
+<img src="https://i.makeagif.com/media/5-21-2015/DV1SEF.gif"/>
+ </div>
+<br>
+
 [![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)[![star this repo](https://githubbadges.com/star.svg?user=adriacabeza&repo=DeepCatalan&style=flat-square)](https://github.com/adriacabeza/DeepCatalan) [![fork this repo](https://githubbadges.com/fork.svg?user=adriacabeza&repo=DeepCatalan&style=flat-square)](https://github.com/adriacabeza/DeepCatalan/fork)
 
 >  Since this repository is built with the goal of making possible to use DL models in Catalan, I've decided to document everything in Catalan. If you have any question, do not hesitate in creating an issue or contacting me. 
 
-Últimament hi està havent un boom en el camp del NLP, en especial en el camp en els transformadors (i.e. BERT, GPT-3). No obstant, es tendeix a enfocar l'interés únicament en l'anglès; les altres llengües queden apartadles dels nous models i tècniques. És per això que he decidit entrenar aquest model en Català. La idea és que els pesos serveixin de base per a crear noves aplicacions que utilitzin NLP en català (de la mateixa manera que sol fer fine-tuning amb models entrenats amb ImageNet)
+Últimament hi està havent un boom en el camp del NLP, en especial en el camp en els transformadors (i.e. BERT, GPT-3). No obstant, es tendeix a enfocar l'interés únicament en l'anglès; les altres llengües queden apartadles dels nous models i tècniques. És per això que he decidit entrenar aquest model en Català. La idea és que els pesos serveixin de base per a crear noves aplicacions que utilitzin NLP en català (de la mateixa manera que sol fer fine-tuning amb models entrenats amb ImageNet).
 
-Aquest repositori conté l'entrenament d'[ULMFit](https://arxiv.org/pdf/1801.06146.pdf), model ideat per en Jeremy Howard i en Sebastian Ruder, aplicat a tasques de processament de llenguatge natural en Català. El model s'ha entrenat amb un dump d'articles en català de Wikipedia. En total s'han processat **252.016 documents i més de 98 millons de tokens**. El codi s'ha insipirat principalment en [el codi oficial de Fastai](https://github.com/fastai/fastai/tree/1700eaa771bd3e66fe582aa4add999fdd269d240/courses/dl2/imdb_scripts) (el qual està una mica antiquat i s'hauria de renovar) i [DeepFrench](https://github.com/tchambon/deepfrench) (la versió de ULMFIT en francès).
+Aquest repositori conté l'entrenament d'[ULMFit](https://arxiv.org/pdf/1801.06146.pdf), model ideat per en Jeremy Howard i en Sebastian Ruder, aplicat a tasques de processament de llenguatge natural en Català. El model s'ha entrenat amb un dump d'articles en català de Wikipedia. En total s'han processat **252.016 documents i més de 98 millons de tokens**. El projecte s'ha basat principalment en [el codi oficial de Fastai](https://github.com/fastai/fastai/tree/1700eaa771bd3e66fe582aa4add999fdd269d240/courses/dl2/imdb_scripts) (el qual està una mica antiquat i s'hauria de renovar) i [DeepFrench](https://github.com/tchambon/deepfrench) (la versió de ULMFIT en francès).
 
 Per a provar els weights d'aquest multi-purpose model en català he realitzat una prova scrapejant notícies de diverses pàgines web i construint un classificador.
 
@@ -13,13 +19,13 @@ Per a provar els weights d'aquest multi-purpose model en català he realitzat un
 
 Hi ha dos notebooks disponibles els quals ja descarreguen a l'inici les seves dependències de Python. Els dos estan preparats per a runnejar a Google Colab (no tothom té GPUS cares a casa) :
 
-- Entrenar ULMFit amb wikipedia: [CatalanULMFit.ipynb](CatalanULMFit.ipynb)
+- Entrenar ULMFit amb wikipedia: [CatalanULMFit.ipynb](CatalanULMFit.ipynb).
 - Entrenar un classificador fent servir els pesos preentrenats: [ClassificadorNoticies.ipynb](ClassificadorNoticies.ipynb). Per aquest pas hauràs de crear un dataset (no té perquè ser molt gran, s'han demostrar resultats molt bons amb poca data).
 
 ## Pesos preentrenats
 
 - [CatalanULMFit](https://mega.nz/folder/b2ZjwaqB#pMAEy-OFVbDvQu4Vk63mpQ) (218 MB): model amb una perplexitat de **21.54** i un vocabulari de **30.656** paraules.
-- [ClassificadorNotície](https://mega.nz/folder/b2ZjwaqB#pMAEy-OFVbDvQu4Vk63mpQ) (195 MB): model de prova que classifica notícies en 5 categories: esports, economia, cultura, tecnologia i salut. El model té una accuracy del **4%**.
+- [ClassificadorNotícies](https://mega.nz/folder/b2ZjwaqB#pMAEy-OFVbDvQu4Vk63mpQ) (195 MB): model de prova que classifica notícies en 5 categories: esports, economia, cultura, tecnologia i salut. El model té una accuracy del **94.4%**.
 
 
 ## Exemple: Classificació de notícies
@@ -32,7 +38,7 @@ El dataset consisteix en un conjunt de 889 notícies scrapejades d'internet amb 
   <img altname="dataset" src="docs/noticies_plot.png" width="60%"/>
 </div>
 
-Com podeu veure, amb relativament poca data i fent ús de poc poder computacional (Google Colab) s'han aconseguit resultats molt bons: 
+Amb relativament poca data i fent ús de poc poder computacional (Google Colab) s'han aconseguit resultats molt bons: 
 
 <div align="center">
   <img altname="results" src="docs/confusion_matrix.png" width="60%"/>
@@ -63,7 +69,7 @@ Aquest pas es realitza amb una tènica nova anomenada *discriminative fine-tunin
 
 
 
- L'utilitzem perquè volem convergir de manera ràpida a una regió del espai adecuada (el període en el que el learning rate augmenta) i llavors refinar adequadament els paràmetres (peróde on el learning rate va disminuir).
+ L'utilitzem perquè volem convergir de manera ràpida a una regió del espai adecuada (el període en el que el learning rate augmenta) i llavors refinar adequadament els paràmetres (període on el learning rate va disminuir).
 
 3- Finalment, podem tunejar el model per a realitzar la tasca de classificació desitjada (fent servir només l'encoder del model i borrant el classificador que predia la següent paraula). En aquest pas afegim dos blocs lineals bastant semblants als blocs standards que podem trobar en Visió per Computador: Batch Normalization, Dropout, ReLU activations per a les activacions intermitges i una Softmax al final. En aquest pas **només els paràmetres d'aquests blocs son tunejats de zero**.
 
@@ -85,8 +91,8 @@ Dues tècniques adicionals que cal esmentar en aquest últim pas són el *Gradua
   
   Si voleu col·laborar, feel free de fer pull-request. A més si no sabeu en què podeu col·laborar, aquí deixo algunes idees:
   
-  - Crear un classificador fent servir BERT i comparar la performance amb un de creat a partir dels pesos de CatalanULMFit.
-  - Fer fine-tuning a una altra tasca (similar a l'exemple del classificador de notícies).
-  - Millorar el model CatalanULMFit.
+  - [ ] Crear un classificador fent servir BERT i comparar la performance amb un de creat a partir dels pesos de CatalanULMFit.
+  - [ ] Fer fine-tuning a una altra tasca (similar a l'exemple del classificador de notícies).
+  - [ ] Millorar el model CatalanULMFit.
   
   
