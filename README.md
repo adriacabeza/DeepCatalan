@@ -19,7 +19,7 @@ Per a provar els weights d'aquest multi-purpose model en català he realitzat un
 
 Hi ha dos notebooks disponibles els quals ja descarreguen a l'inici les seves dependències de Python. Els dos estan preparats per a runnejar a Google Colab (no tothom té GPUS cares a casa) :
 
-- Entrenar ULMFit amb wikipedia: [CatalanULMFit.ipynb](CatalanULMFit.ipynb)
+- Entrenar ULMFit amb wikipedia: [CatalanULMFit.ipynb](CatalanULMFit.ipynb).
 - Entrenar un classificador fent servir els pesos preentrenats: [ClassificadorNoticies.ipynb](ClassificadorNoticies.ipynb). Per aquest pas hauràs de crear un dataset (no té perquè ser molt gran, s'han demostrar resultats molt bons amb poca data).
 
 ## Pesos preentrenats
@@ -69,7 +69,7 @@ Aquest pas es realitza amb una tènica nova anomenada *discriminative fine-tunin
 
 
 
- L'utilitzem perquè volem convergir de manera ràpida a una regió del espai adecuada (el període en el que el learning rate augmenta) i llavors refinar adequadament els paràmetres (peróde on el learning rate va disminuir).
+ L'utilitzem perquè volem convergir de manera ràpida a una regió del espai adecuada (el període en el que el learning rate augmenta) i llavors refinar adequadament els paràmetres (període on el learning rate va disminuir).
 
 3- Finalment, podem tunejar el model per a realitzar la tasca de classificació desitjada (fent servir només l'encoder del model i borrant el classificador que predia la següent paraula). En aquest pas afegim dos blocs lineals bastant semblants als blocs standards que podem trobar en Visió per Computador: Batch Normalization, Dropout, ReLU activations per a les activacions intermitges i una Softmax al final. En aquest pas **només els paràmetres d'aquests blocs son tunejats de zero**.
 
@@ -91,8 +91,8 @@ Dues tècniques adicionals que cal esmentar en aquest últim pas són el *Gradua
   
   Si voleu col·laborar, feel free de fer pull-request. A més si no sabeu en què podeu col·laborar, aquí deixo algunes idees:
   
-  - Crear un classificador fent servir BERT i comparar la performance amb un de creat a partir dels pesos de CatalanULMFit.
-  - Fer fine-tuning a una altra tasca (similar a l'exemple del classificador de notícies).
-  - Millorar el model CatalanULMFit.
+  - [ ] Crear un classificador fent servir BERT i comparar la performance amb un de creat a partir dels pesos de CatalanULMFit.
+  - [ ] Fer fine-tuning a una altra tasca (similar a l'exemple del classificador de notícies).
+  - [ ] Millorar el model CatalanULMFit.
   
   
