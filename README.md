@@ -19,7 +19,7 @@ Hi ha dos notebooks disponibles els quals ja descarreguen a l'inici les seves de
 ## Pesos preentrenats
 
 - [CatalanULMFit](https://mega.nz/folder/b2ZjwaqB#pMAEy-OFVbDvQu4Vk63mpQ) (218 MB): model amb una perplexitat de **21.54** i un vocabulari de **30.656** paraules.
-- [ClassificadorNotície](https://mega.nz/folder/b2ZjwaqB#pMAEy-OFVbDvQu4Vk63mpQ) (195 MB): model de prova que classifica notícies en 5 categories: esports, economia, cultura, tecnologia i salut. El model té una accuracy del **97%**.
+- [ClassificadorNotície](https://mega.nz/folder/b2ZjwaqB#pMAEy-OFVbDvQu4Vk63mpQ) (195 MB): model de prova que classifica notícies en 5 categories: esports, economia, cultura, tecnologia i salut. El model té una accuracy del **4%**.
 
 
 ## Exemple: Classificació de notícies
@@ -35,7 +35,7 @@ El dataset consisteix en un conjunt de 889 notícies scrapejades d'internet amb 
 Com podeu veure, amb relativament poca data i fent ús de poc poder computacional (Google Colab) s'han aconseguit resultats molt bons: 
 
 <div align="center">
-  <img altname="results" src=" " width="60%"/>
+  <img altname="results" src="docs/confusion_matrix.png" width="60%"/>
 </div>
 
 ##  El model: ULMFit
