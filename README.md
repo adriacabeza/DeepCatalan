@@ -19,7 +19,7 @@ Hi ha dos notebooks disponibles els quals ja descarreguen a l'inici les seves de
 ## Pesos preentrenats
 
 - [CatalanULMFit](https://mega.nz/folder/b2ZjwaqB#pMAEy-OFVbDvQu4Vk63mpQ) (218 MB): model amb una perplexitat de **21.54** i un vocabulari de **30.656** paraules.
-- [ClassificadorNotície](https://mega.nz/folder/b2ZjwaqB#pMAEy-OFVbDvQu4Vk63mpQ) (195 MB): model de prova que classifica notícies en 5 categories: esports, economia, cultura, tecnologia i salut. El model té una accuracy del **4%**.
+- [ClassificadorNotície](https://mega.nz/folder/b2ZjwaqB#pMAEy-OFVbDvQu4Vk63mpQ) (195 MB): model de prova que classifica notícies en 5 categories: esports, economia, cultura, tecnologia i salut. El model té una accuracy del **94%**.
 
 
 ## Exemple: Classificació de notícies
