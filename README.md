@@ -5,7 +5,10 @@
  </div>
 <br>
 
-[![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)[![star this repo](https://githubbadges.com/star.svg?user=adriacabeza&repo=DeepCatalan&style=flat-square)](https://github.com/adriacabeza/DeepCatalan) [![fork this repo](https://githubbadges.com/fork.svg?user=adriacabeza&repo=DeepCatalan&style=flat-square)](https://github.com/adriacabeza/DeepCatalan/fork)
+[![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![star this repo](https://img.shields.io/github/stars/adriacabeza/DeepCatalan?label=Star&style=flat-square)](https://github.com/adriacabeza/DeepCatalan)
+[![fork this repo](https://img.shields.io/github/forks/adriacabeza/DeepCatalan?label=Fork&style=flat-square)](https://github.com/adriacabeza/DeepCatalan/fork)
 
 >  Since this repository is built with the goal of making possible to use DL models in Catalan, I've decided to document everything in Catalan. If you have any question, do not hesitate in creating an issue or contacting me. 
 
